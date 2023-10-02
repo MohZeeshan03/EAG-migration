@@ -311,13 +311,19 @@ export default function Home() {
                             {/* <div className="mt-6">
                             <h3 className="text-xl font-semibold text-amber-400"><span className="text-white opacity-75">Staking APR</span> 4.86%</h3>
                         </div> */}
-                            <div className="my-6">
-                                {parseFloat(wstats.migratedTokens) > 0 && parseFloat(wstats.migratedTokens) > parseFloat(wstats.totalClaimed) &&
-                                    <button disabled={loading} className="w-full text-amber-400 bg-amber-400/25 py-2 px-3 rounded-md hover:bg-amber-400/40 sl-animated-lg" onClick={() => handleClaim()}>
-                                        {loading ? 'Loading' : 'Claim'}
-                                    </button>
-                                }
-                            </div>
+                            {address && isConnected ? (
+                                <div className="my-6">
+                                    {parseFloat(wstats.migratedTokens) > 0 && parseFloat(wstats.migratedTokens) > parseFloat(wstats.totalClaimed) &&
+                                        <button disabled={loading} className="w-full text-amber-400 bg-amber-400/25 py-2 px-3 rounded-md hover:bg-amber-400/40 sl-animated-lg" onClick={() => handleClaim()}>
+                                            {loading ? 'Loading' : 'Claim'}
+                                        </button>
+                                    }
+                                </div>
+                            ) : (
+                                <div className="my-6">
+                                    <button className="w-full text-amber-400 bg-amber-400/25 py-2 px-3 rounded-md hover:bg-amber-400/40 sl-animated-lg" onClick={() => open()}>Connect Wallet</button>
+                                </div>
+                            )}
 
                         </div>
                     )}
