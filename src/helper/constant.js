@@ -6,9 +6,9 @@ export const NETWORKS = {
     chainId: 5,
     rpc: "https://rpc.ankr.com/eth_goerli",
     symbol: 'ETH',
-    MIGRATION_ADDRESS: "0x9f898b8fb8f7c0eadc251a8cd68bae545ee9f3b9",
-    GLDN_ADDRESS : "0x326c977e6efc84e512bb9c30f76e30c160ed06fb",
-    EAG_ADDRESS : "0x1a664528b6bc1f140e4abe3f051100bd0ce64a3c",
+    MIGRATION_ADDRESS: "0x3c948aCf79D845BA341D9410dD0FB9CF43E888e7",
+    GLDN_ADDRESS : "0x16eadee76a7c11820fe5640a0dabfaf9af41e9a4",
+    EAG_ADDRESS : "0x0788d2cd1bfc8189f3d43845a7e6b96118478011",
     MULTICALL_ADDRESS: "0xA78B1c073483655DC5eCf568CFef12Ab9b30338C",
    
   }
