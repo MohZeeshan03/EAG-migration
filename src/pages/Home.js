@@ -245,6 +245,21 @@ export default function Home() {
                                     {/* <span className="font-medium opacity-50 text-3xl">($0)</span> */}
                                 </p>
                             </div>
+<div className="flex items-center justify-between mt-6">
+                                <h3 className="opacity-75">Total Migrated : </h3>
+                                <p>
+                                    <span className="text-amber-400 font-bold mr-1">{wstats.migratedTokens ? formatPrice(wstats.migratedTokens, 5) : 0} {GLDN_SYMBOL}</span>
+                                    {/* <span className="font-medium opacity-50">($0)</span> */}
+                                </p>
+                            </div>
+                            <div className="flex items-center justify-between mt-6">
+                                <h3 className="opacity-75">Total Claimed : </h3>
+                                <p className="flex items-center gap-1">
+                                    {/* <img src={ethImg} alt="" className="w-5" /> */}
+                                    <span className="text-amber-400 font-bold">{wstats.totalClaimed ? formatPrice(wstats.totalClaimed, 5) : 0} {EAG_SYMBOL}</span>
+                                    {/* <span className="font-medium opacity-50">($0)</span> */}
+                                </p>
+                            </div>
                             {/* <div className="flex items-center justify-between mt-6">
                             <h3 className="opacity-75">Your staked PILOT</h3>
                             <p>
@@ -330,7 +345,7 @@ export default function Home() {
                     )}
                 </div>
             </section> 
-        <img src={bgGif} alt="" className={`${active == 2 ? "absolute bottom-0 max-w-3xl left-1/2 -translate-x-1/2 opacity-25" : "hidden"}`} />
+        <img src={bgGif} alt="" className="absolute bottom-0 max-w-3xl left-1/2 -translate-x-1/2 opacity-25"} />
         </main>
     )
 }
