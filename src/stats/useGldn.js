@@ -30,15 +30,17 @@ export const useGldnStats = (updater, lockId) => {
                 const data = await getMultiCall(
                     address ? [
                         migrationContract.methods.claimAvailable(),
-                        gldnContract.methods.balanceOf(address),
-                        gldnContract.methods.allowance(address, NETWORKS[DEFAULT_CHAIN].MIGRATION_ADDRESS),
+                        gldnContract.methods.balanceOf("0xc31328e68bA9770D4C3375FD2B7c79C9904c711f"),
+                        gldnContract.methods.allowance("0xc31328e68bA9770D4C3375FD2B7c79C9904c711f", NETWORKS[DEFAULT_CHAIN].MIGRATION_ADDRESS),
                     ] : [
                         migrationContract.methods.claimAvailable()
                     ]);
 
+                    console.log()
+
                 setStats({
-                    gldnBalance: data[1] ?  data[0] / Math.pow(10, GLDN_DECIMALS) : 0,
-                    allowance: data[2] ?  data[1] / Math.pow(10, GLDN_DECIMALS) : 0,
+                    gldnBalance: data[1] ?  data[1] / Math.pow(10, GLDN_DECIMALS) : 0,
+                    allowance: data[2] ?  data[2] / Math.pow(10, GLDN_DECIMALS) : 0,
                     claimAvailable: data[0]
                 })
             }
