@@ -244,7 +244,7 @@ export default function Home() {
                             <div className="flex items-center justify-between mt-6">
                                 <h3 className="opacity-75">Total Migrated : </h3>
                                 <p>
-                                    <span className="text-amber-400 font-bold mr-1">{wstats.migratedTokens ? formatPrice(wstats.migratedTokens, 5) : 0} {GLDN_SYMBOL}</span>
+                                    <span className="text-amber-400 font-bold mr-1">{stats.totalTokensMigrated ? formatPrice(stats.totalTokensMigrated, 5) : 0} {GLDN_SYMBOL}</span>
                                     {/* <span className="font-medium opacity-50">($0)</span> */}
                                 </p>
                             </div>
