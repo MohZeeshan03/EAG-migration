@@ -192,10 +192,6 @@ export default function Home() {
         }
     }
 
-    useEffect(() => {
-        console.log(stats)
-    }, [wstats])
-
 
     return (
         // <main class="site-main">
