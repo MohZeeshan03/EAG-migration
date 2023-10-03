@@ -330,7 +330,7 @@ export default function Home() {
                     )}
                 </div>
             </section> 
-        <img src={bgGif} alt="" className="absolute bottom-0 max-w-3xl left-1/2 -translate-x-1/2 opacity-25" />
+        <img src={bgGif} alt="" className={`${active == 2 ? "absolute bottom-0 max-w-3xl left-1/2 -translate-x-1/2 opacity-25" : "hidden"}`} />
         </main>
     )
 }
