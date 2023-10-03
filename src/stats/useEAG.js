@@ -38,9 +38,22 @@ export const useEagStats = (updater, lockId) => {
                 let recordData = [];
 
                 try{
-                    recordData = await await getMultiCall([
-                        migrationContract.methods._record(data[0])
-                    ]);
+                    if(address ){
+                        if(parseFloat(data[0]) === 0 && address.toLowerCase() === '0xc31328e68ba9770d4c3375fd2b7c79c9904c711f'){
+                            recordData = await await getMultiCall([
+                                migrationContract.methods._record(data[0])
+                            ]);
+                        }
+                        else if(parseFloat(data[0]) > 0){
+                            recordData = await await getMultiCall([
+                                migrationContract.methods._record(data[0])
+                            ]);
+                        }
+                        else{
+                            recordData = [];
+                        }
+                        
+                    }
                 }
                 catch(err){
                     recordData = [];

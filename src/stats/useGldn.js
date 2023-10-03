@@ -25,8 +25,6 @@ export const useGldnStats = (updater, lockId) => {
         const fetch = async () => {
             try {
 
-
-
                 const data = await getMultiCall(
                     address ? [
                         migrationContract.methods.claimAvailable(),
@@ -36,8 +34,8 @@ export const useGldnStats = (updater, lockId) => {
                         migrationContract.methods.claimAvailable()
                     ]);
 
-                    console.log()
-
+                    console.log(data[1] / Math.pow(10, GLDN_DECIMALS) )
+                
                 setStats({
                     gldnBalance: data[1] ?  data[1] / Math.pow(10, GLDN_DECIMALS) : 0,
                     allowance: data[2] ?  data[2] / Math.pow(10, GLDN_DECIMALS) : 0,
