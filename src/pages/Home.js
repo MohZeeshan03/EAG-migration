@@ -13,6 +13,7 @@ import { useEagStats } from '../stats/useEAG';
 import heroImg from '../assets/hero.png'
 import gldnImg from '../assets/gldn.png';
 import eagImg from '../assets/eag.png';
+import bgGif from '../assets/EAGif.gif';
 import { useWeb3Modal } from '@web3modal/react';
 
 
@@ -223,13 +224,13 @@ export default function Home() {
         //     </div >
         // </main >
 
-        <main className="md:mb-32">
-            <section className="text-center md:py-20 sm:py-16 py-10">
+        <main className="relative md:pb-20">
+            <section className="text-center md:pt-12 sm:pt-9 pt-6 pb-4">
                 <img className="md:max-w-xs sm:max-w-[16rem] max-w-[12rem] mx-auto" src={heroImg} alt="" />
                 <h1 className="md:text-6xl xs:text-4xl text-2xl text-amber-400 font-medium tracking-wide pt-5">Token Migration</h1>
             </section>
-            <section className="sl-container md:pt-12 sm:pt-9 pt-6 pb-4">
-                <div className="max-w-2xl bg-zinc-800 sm:px-6 px-4 py-3 rounded-2xl mx-auto">
+            <section className="sl-container md:py-20 sm:py-16 py-10">
+                <div className="max-w-2xl bg-zinc-800/30 sm:px-6 px-4 py-3 rounded-2xl mx-auto">
                     <h2 className="">
                         <button onClick={() => { setActive(1) }} className={`w-1/2 text-center py-2 px-3 ${active == 1 ? "border-b-[3px] border-amber-400 text-amber-400" : "border-b-2 border-white/50 text-white/50"}`}>Migration</button>
                         <button onClick={() => { setActive(2) }} className={`w-1/2 text-center py-2 px-3 ${active == 2 ? "border-b-[3px] border-amber-400 text-amber-400" : "border-b-2 border-white/50 text-white/50"}`}>Claim</button>
@@ -328,7 +329,8 @@ export default function Home() {
                         </div>
                     )}
                 </div>
-            </section>
+            </section> 
+        <img src={bgGif} alt="" className="absolute bottom-0 max-w-3xl left-1/2 -translate-x-1/2 opacity-25" />
         </main>
     )
 }
