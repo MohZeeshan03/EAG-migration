@@ -35,15 +35,21 @@ export const useEagStats = (updater, lockId) => {
                     eagContract.methods.balanceOf(address)
                 ]);
                 
+                let recordData = [];
 
-                const recordData = await await getMultiCall([
-                    migrationContract.methods._record(data[0])
-                ]);
+                try{
+                    recordData = await await getMultiCall([
+                        migrationContract.methods._record(data[0])
+                    ]);
+                }
+                catch(err){
+                    recordData = [];
+                }
 
                 setStats({
-                    migrationTx: recordData[0][1],
-                    migratedTokens: recordData[0][2] / Math.pow(10,EAG_DECIMALS),
-                    totalClaimed: recordData[0][3] / Math.pow(10,EAG_DECIMALS),
+                    migrationTx: recordData[0] ?  recordData[0][1] : 0,
+                    migratedTokens: recordData[0] ?  recordData[0][2] / Math.pow(10,EAG_DECIMALS) : 0,
+                    totalClaimed:  recordData[0] ?  recordData[0][3] / Math.pow(10,EAG_DECIMALS) : 0,
                     index: data[0],
                     eagBalance : data[1] / Math.pow(10,EAG_DECIMALS)
 
