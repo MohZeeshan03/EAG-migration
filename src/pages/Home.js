@@ -245,24 +245,27 @@ export default function Home() {
                                     {/* <span className="font-medium opacity-50 text-3xl">($0)</span> */}
                                 </p>
                             </div>
-                            {/* <div className="flex items-center justify-between mt-6">
-                            <h3 className="opacity-75">Your staked PILOT</h3>
-                            <p>
-                                <span className="text-amber-400 font-bold mr-1">0</span>
-                                <span className="font-medium opacity-50">($0)</span>
-                            </p>
-                        </div>
-                        <div className="flex items-center justify-between mt-6">
-                            <h3 className="opacity-75">Total Rewards Claimed</h3>
-                            <p className="flex items-center gap-1">
-                                <img src={ethImg} alt="" className="w-5" />
-                                <span className="text-amber-400 font-bold">0</span>
-                                <span className="font-medium opacity-50">($0)</span>
-                            </p>
-                        </div> */}
-                            {/* <div className="mt-6">
-                            <h3 className="text-xl font-semibold text-amber-400"><span className="text-white opacity-75">Staking APR</span> 4.86%</h3>
-                        </div> */}
+                            <div className="flex items-center justify-between mt-6">
+                                <h3 className="opacity-75">Total Migrated : </h3>
+                                <p>
+                                    <span className="text-amber-400 font-bold mr-1">{wstats.migratedTokens ? formatPrice(wstats.migratedTokens, 5) : 0} {GLDN_SYMBOL}</span>
+                                    {/* <span className="font-medium opacity-50">($0)</span> */}
+                                </p>
+                            </div>
+                            <div className="flex items-center justify-between mt-6">
+                                <h3 className="opacity-75">Claim Status : </h3>
+                                <p className="flex items-center gap-1">
+                                    {/* <img src={ethImg} alt="" className="w-5" /> */}
+                                    <span className="text-amber-400 font-bold">{
+                                        parseFloat(wstats.migratedTokens) <= parseFloat(wstats.totalClaimed)  ? 
+                                         <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Claimed</span>
+                                        
+                                        : 
+                                        <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">UnClaimed</span>
+                                        }</span>
+                                    {/* <span className="font-medium opacity-50">($0)</span> */}
+                                </p>
+                            </div>
                             {address && isConnected ? (
                                 parseFloat(stats.allowance) >= parseFloat(stats.gldnBalance) ? (
                                     <div className="my-6">
@@ -329,8 +332,8 @@ export default function Home() {
                         </div>
                     )}
                 </div>
-            </section> 
-        <img src={bgGif} alt="" className="absolute bottom-0 max-w-3xl left-1/2 -translate-x-1/2 opacity-25" />
+            </section>
+            <img src={bgGif} alt="" className="absolute bottom-0 max-w-3xl left-1/2 -translate-x-1/2 opacity-25" />
         </main>
     )
 }
