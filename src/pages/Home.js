@@ -193,7 +193,7 @@ export default function Home() {
     }
 
     useEffect(() => {
-        console.log(wstats)
+        console.log(stats)
     }, [wstats])
 
 
@@ -257,12 +257,12 @@ export default function Home() {
                                 <p className="flex items-center gap-1">
                                     {/* <img src={ethImg} alt="" className="w-5" /> */}
                                     <span className="text-amber-400 font-bold">{
-                                        parseFloat(wstats.migratedTokens) <= parseFloat(wstats.totalClaimed)  ? 
-                                         <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Claimed</span>
-                                        
-                                        : 
-                                        <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">UnClaimed</span>
-                                        }</span>
+                                        stats.claimAvailable ?
+                                            <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">AVAILABLE</span>
+
+                                            :
+                                            <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">NOT AVAILABLE</span>
+                                    }</span>
                                     {/* <span className="font-medium opacity-50">($0)</span> */}
                                 </p>
                             </div>

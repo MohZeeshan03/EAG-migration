@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import tokenAbi from '../json/tokenAbi.json';
+import migrationAbi from '../json/migrationAbi.json'
 import { useAccount } from "wagmi";
 import { DEFAULT_CHAIN, GLDN_DECIMALS, NETWORKS } from "../helper/constant";
 import { getMultiCall } from "../helper/contractHelper";
@@ -13,10 +14,11 @@ export const useGldnStats = (updater, lockId) => {
 
     const [stats, setStats] = useState({
         gldnBalance: 0,
-        allowance: 0
+        allowance: 0,
+        claimAvailable: false
     });
 
-
+    let migrationContract = new web3.eth.Contract(migrationAbi, NETWORKS[DEFAULT_CHAIN].MIGRATION_ADDRESS);
     let gldnContract = new web3.eth.Contract(tokenAbi, NETWORKS[DEFAULT_CHAIN].GLDN_ADDRESS);
 
     useEffect(() => {
@@ -25,39 +27,36 @@ export const useGldnStats = (updater, lockId) => {
 
 
 
-                const data = await getMultiCall([
-                    gldnContract.methods.balanceOf(address),
-                    gldnContract.methods.allowance(address, NETWORKS[DEFAULT_CHAIN].MIGRATION_ADDRESS)
-                ]);
-
-
-    
+                const data = await getMultiCall(
+                    address ? [
+                        migrationContract.methods.claimAvailable(),
+                        gldnContract.methods.balanceOf(address),
+                        gldnContract.methods.allowance(address, NETWORKS[DEFAULT_CHAIN].MIGRATION_ADDRESS),
+                    ] : [
+                        migrationContract.methods.claimAvailable()
+                    ]);
 
                 setStats({
-                    gldnBalance: data[0] / Math.pow(10, GLDN_DECIMALS),
-                    allowance: data[1] / Math.pow(10, GLDN_DECIMALS)
+                    gldnBalance: data[1] ?  data[0] / Math.pow(10, GLDN_DECIMALS) : 0,
+                    allowance: data[2] ?  data[1] / Math.pow(10, GLDN_DECIMALS) : 0,
+                    claimAvailable: data[0]
                 })
             }
             catch (err) {
                 setStats({
                     gldnBalance: 0,
-                    allowance: 0
+                    allowance: 0,
+                    claimAvailable: false
                 })
                 console.log(err.message);
 
             }
         }
 
-        if(address){
-            fetch()
-        }
-        else{
-            setStats({
-                gldnBalance: 0,
-                allowence: 0
-            })
-        }
-
+       
+        fetch()
+      
+        
         // eslint-disable-next-line
     }, [updater, address]);
 
